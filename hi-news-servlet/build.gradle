@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.8.2'
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    compileOnly('javax.servlet:javax.servlet-api:4.0.1')
+    implementation 'com.microsoft.sqlserver:sqljdbc4:4.0'
+    implementation 'commons-dbutils:commons-dbutils:1.7'
+    implementation "com.alibaba:fastjson:1.2.83"
+
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}

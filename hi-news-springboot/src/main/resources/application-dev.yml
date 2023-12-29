@@ -1,0 +1,12 @@
+debug: true
+
+server:
+  port: 8088
+  servlet:
+    context-path: /
+
+#spring
+spring:
+  profiles:
+    include:
+      - dev-db

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.news.dao.mapper.NewsMapper">
+    <select id="queryTopNews" resultType="com.example.news.entity.News">
+        SELECT top 10 id,title,publisher,gmt_create as gmtCreate FROM news order by id desc
+    </select>
+</mapper>

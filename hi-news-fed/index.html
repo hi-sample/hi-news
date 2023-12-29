@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新闻列表</title>
+</head>
+<body>
+<h1>新闻列表</h1>
+<ul id="newList"></ul>
+<br/>
+</body>
+<script src="/jquery-2.1.4.js"></script>
+<script>
+    var apiPath= "http://localhost:8088";
+    function init() {
+        $.ajax({
+            url: apiPath + "/api/news",
+            type: 'GET',
+            dataType: 'json',
+            success: function (result) {
+                console.log(result);
+                if (result.code == 0) {
+                    var data = result.data;
+                    var html = "";
+                    console.log(data.size);
+                    for (i = 0; i < data.length; i++) {
+                        html += "<li>" + data[i].title + "    " + data[i].publisher + "    " + getDate(data[i].gmtCreate) + "</li>";
+                    }
+                    $("#newList").html(html);
+                } else {
+                    $("#newList").html(result.msg);
+                }
+            }
+        });
+    }
+
+    function getDate(milliseconds) {
+        var date = new Date(milliseconds);
+        Y = date.getFullYear() + '-';
+        M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+        D = date.getDate() + ' ';
+        h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+        m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+        s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+        return Y + M + D + h + m + s;
+    }
+
+    init();
+</script>
+</html>

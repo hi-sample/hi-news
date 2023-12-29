@@ -1,0 +1,65 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+}
+
+ext {
+    ver_commonsIo = '2.7'
+    ver_fastjson = '1.2.83'
+    ver_mybatisBoot = '2.1.4'
+    ver_druidBoot = '1.2.11'
+    ver_pagehelperBoot = '1.2.3'
+    ver_commonsLang3 = '3.4'
+    ver_sqlserver = '6.4.0.jre8'
+}
+
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:${ver_mybatisBoot}"
+    implementation "com.alibaba:druid-spring-boot-starter:${ver_druidBoot}"
+    implementation "com.github.pagehelper:pagehelper-spring-boot-starter:${ver_pagehelperBoot}"
+    implementation "com.microsoft.sqlserver:mssql-jdbc:${ver_sqlserver}"
+
+    implementation "com.alibaba:fastjson:${ver_fastjson}"
+    implementation "org.apache.commons:commons-lang3:${ver_commonsLang3}"
+    implementation "commons-io:commons-io:${ver_commonsIo}"
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+jar {
+    from('src/main/java') {
+        include '**/*.xml'
+    }
+}
+
+bootJar {
+    exclude('static/favicon.ico')
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDirs = ['src/main/java', 'src/main/resources']
+        }
+    }
+}

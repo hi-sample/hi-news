@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    #druid连接池配置
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      web-stat-filter:
+        enabled: false
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      url: jdbc:sqlserver://test.s247.hifor.net;DatabaseName=demo_news;sendStringParametersAsUnicode=false
+      username: news
+      password: Ea!@jjX7Cp6WwhL5
+
+mybatis:
+  mapper-locations: classpath*:**/dao/mapping/*.xml
