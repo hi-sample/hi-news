@@ -161,6 +161,7 @@ public class NewsBean {
 
     /**
      * 修改一条记录
+     *
      * @param news
      * @return
      */
@@ -172,11 +173,11 @@ public class NewsBean {
             conn = DbConn.getConnection();
             String sql = "UPDATE news SET title = ?, news_content = ?, publisher = ?, gmt_modify = ? WHERE id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1,news.getTitle());
-            ps.setString(2,news.getNewsContent());
-            ps.setString(3,news.getPublisher());
-            ps.setTimestamp(4,new java.sql.Timestamp(news.getGmtModify().getTime()));
-            ps.setLong(5,news.getId());
+            ps.setString(1, news.getTitle());
+            ps.setString(2, news.getNewsContent());
+            ps.setString(3, news.getPublisher());
+            ps.setTimestamp(4, new java.sql.Timestamp(news.getGmtModify().getTime()));
+            ps.setLong(5, news.getId());
             rows = ps.executeUpdate();
             System.out.println("rows: " + rows);
         } catch (SQLException e) {
@@ -192,6 +193,12 @@ public class NewsBean {
         }
     }
 
+    /**
+     * 删除一条记录
+     *
+     * @param id
+     * @return
+     */
     public boolean delete(long id) {
         Connection conn = null;
         int rows = 0;

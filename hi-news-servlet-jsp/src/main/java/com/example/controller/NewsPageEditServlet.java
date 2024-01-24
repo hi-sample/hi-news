@@ -17,13 +17,8 @@ import java.io.IOException;
  * @create 2024/1/23 12:08 <br/>
  */
 @WebServlet(value = {"/newsAdd","/newsEdit"})
-public class NewsPageEditServlet extends HttpServlet {
-    private NewsBean newsBean;
+public class NewsPageEditServlet extends NewsBaseServlet {
 
-    public void init() {
-        // 在初始化方法中创建NewsDAO对象
-        newsBean = new NewsBean();
-    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("id")!=null){

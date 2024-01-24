@@ -17,15 +17,15 @@ import java.util.Date;
  * @author IKin
  */
 @WebServlet(value = "/news")
-public class NewsServlet extends HttpServlet {
+public class NewsServlet extends NewsBaseServlet {
 
-    private NewsBean newsBean;
-
-    public void init() {
-        // 在初始化方法中创建NewsDAO对象
-        newsBean = new NewsBean();
-    }
-
+    /**
+     * 新闻明细接口
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Long.valueOf(request.getParameter("id"));
@@ -40,6 +40,13 @@ public class NewsServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+    /**
+     * 新闻修改接口
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -73,6 +80,13 @@ public class NewsServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+    /**
+     * 新闻删除接口
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Long.valueOf(request.getParameter("id"));
