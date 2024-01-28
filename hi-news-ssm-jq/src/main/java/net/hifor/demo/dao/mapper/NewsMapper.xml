@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.hifor.demo.dao.NewsDao">
+
+    <select id="queryById" parameterType="java.lang.Long" resultType="net.hifor.demo.entity.News">
+        SELECT
+        id,title,news_content,publisher,gmt_create,gmt_modify
+        FROM news
+        <where>
+            <if test="id!=null and id>0">
+                id = #{id}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryList" parameterType="java.lang.Integer" resultType="net.hifor.demo.entity.News">
+        SELECT top ${_parameter}
+          id,title,news_content,publisher,gmt_create,gmt_modify
+        FROM news
+        order by id desc
+    </select>
+
+    <insert id="add" parameterType="net.hifor.demo.entity.News">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT @@IDENTITY
+        </selectKey>
+        insert into news
+        (title, news_content, publisher)
+        values
+        (#{title}, #{newsContent}, #{publisher})
+    </insert>
+
+    <update id="update" parameterType="net.hifor.demo.entity.News">
+        UPDATE news
+        <set>
+            <if test="title!=null and title!=''">
+                title = #{title},
+            </if>
+            <if test="newsContent!=null and newsContent!=''">
+                news_content = #{newsContent},
+            </if>
+            <if test="publisher!=null and publisher!=''">
+                publisher = #{publisher},
+            </if>
+            <if test="gmtModify!=null">
+                gmt_modify = #{gmtModify},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM news where id = #{id}
+    </delete>
+</mapper>

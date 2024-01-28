@@ -33,47 +33,39 @@
     </c:forEach>
 </table>
 
+<script src="${pageContext.request.contextPath}/resources/jquery-2.1.4.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var addButton = document.getElementById("add");
-        if (addButton) {
-            addButton.addEventListener("click", function () {
-                window.location.href = "${pageContext.request.contextPath}/news/add";
-            });
-        }
+    $(function (){
+        $("#add").click(function (){
+            window.location.href = "${pageContext.request.contextPath}/news/add";
+        });
     });
 
     function view(id) {
-        window.location.href = "${pageContext.request.contextPath}/news?id=" + id;
+        window.location.href = "${pageContext.request.contextPath}/news/view/" + id;
     }
 
     function edit(id) {
-        window.location.href = "${pageContext.request.contextPath}/news/edit?id=" + id;
+        window.location.href = "${pageContext.request.contextPath}/news/edit/" + id;
     }
 
     function del(id) {
         var confirmDelete = confirm("是否删除该条新闻?");
         if (confirmDelete) {
-            var xhr = new XMLHttpRequest();
-            var url = "${pageContext.request.contextPath}/news?id=" + id;
-
-            xhr.open("DELETE", url, true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) { // 成功完成
-                    // 判断响应结果:
-                    if (xhr.status === 200) {
-                        // 成功，通过responseText拿到响应的文本:
-                        alert(xhr.responseText);
+            $.ajax({
+                url: "${pageContext.request.contextPath}/news/" + id,
+                type: 'DELETE',
+                dataType: 'json',
+                success: function (result) {
+                    console.log(result);
+                    if (result.code == 0) {
+                        alert("删除成功");
                         window.location.reload();
                     } else {
-                        // 失败，根据响应码判断失败原因:
-                        return alert(xhr.status);
+                        alert(result.msg);
                     }
-                } else {
-                    // HTTP请求还在继续...
                 }
-            };
-            xhr.send();
+            });
         }
     }
 </script>

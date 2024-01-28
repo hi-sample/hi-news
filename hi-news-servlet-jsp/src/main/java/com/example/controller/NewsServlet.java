@@ -36,7 +36,7 @@ public class NewsServlet extends NewsBaseServlet {
 
         // 显示提示内容后跳转新闻列表页
         request.setAttribute("news", news);
-        RequestDispatcher dispatcher = request.getRequestDispatcher(GlobalConstant.VIEW_PRE + "/newsContent.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher(GlobalConstant.VIEW_PRE + "/newsView.jsp");
         dispatcher.forward(request, response);
     }
 

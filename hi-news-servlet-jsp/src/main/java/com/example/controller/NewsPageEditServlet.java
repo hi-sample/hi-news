@@ -16,7 +16,7 @@ import java.io.IOException;
  * @description <br/>
  * @create 2024/1/23 12:08 <br/>
  */
-@WebServlet(value = {"/newsAdd","/newsEdit"})
+@WebServlet(value = {"/news/add","/news/edit"})
 public class NewsPageEditServlet extends NewsBaseServlet {
 
     @Override
