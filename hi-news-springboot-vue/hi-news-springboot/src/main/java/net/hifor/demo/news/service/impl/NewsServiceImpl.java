@@ -1,10 +1,9 @@
-package net.hifor.demo.service.impl;
+package net.hifor.demo.news.service.impl;
 
-import com.alibaba.fastjson.JSONArray;
-import net.hifor.demo.dao.NewsDao;
-import net.hifor.demo.dto.Result;
-import net.hifor.demo.entity.News;
-import net.hifor.demo.service.NewsService;
+import net.hifor.demo.common.dto.Result;
+import net.hifor.demo.news.dao.NewsDao;
+import net.hifor.demo.news.entity.News;
+import net.hifor.demo.news.service.NewsService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -13,7 +12,7 @@ import java.util.List;
 /**
  * @author IKin <br/>
  * @description <br/>
- * @create 2024/1/26 11:26 <br/>
+ * @create 2022/11/29 15:35 <br/>
  */
 @Service
 public class NewsServiceImpl implements NewsService {
@@ -21,14 +20,19 @@ public class NewsServiceImpl implements NewsService {
     NewsDao newsDao;
 
     @Override
-    public News queryById(long id) {
-        return newsDao.queryById(id);
+    public Result<News> queryById(long id) {
+        News news = newsDao.queryById(id);
+        Result<News> result = new Result<>();
+        result.setModel(news);
+        return result;
     }
 
     @Override
-    public List<News> queryList() {
+    public Result<News> queryList() {
         List<News> list = newsDao.queryList(10);
-        return list;
+        Result<News> result = new Result<>();
+        result.setData(list);
+        return result;
     }
 
     @Override

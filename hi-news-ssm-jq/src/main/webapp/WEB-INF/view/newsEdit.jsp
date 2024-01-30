@@ -12,32 +12,33 @@
     <title>编辑新闻</title>
 </head>
 <body>
-<h2>编辑新闻</h2>
-<form action="${pageContext.request.contextPath}/news" method="post">
-    <div>
-        <label for="title">标题:</label>
-        <input type="text" id="title" name="title" required value="${news!=null ? news.title : ''}"/>
-    </div>
+<h1>编辑新闻</h1>
+<button id="back" type="button">返回</button>
+<div>
+    <form action="${pageContext.request.contextPath}/news" method="post">
+        <div>
+            <label for="title">标题:</label>
+            <input type="text" id="title" name="title" required value="${news!=null ? news.title : ''}"/>
+        </div>
 
-    <div>
-        <label for="newsContent">内容:</label><br/>
-        <textarea id="newsContent" name="newsContent" required
-                  style="width: 600px;height:300px;">${news!=null ? news.newsContent : ''}</textarea>
-    </div>
+        <div>
+            <label for="newsContent">内容:</label><br/>
+            <textarea id="newsContent" name="newsContent" required
+                      style="width: 600px;height:300px;">${news!=null ? news.newsContent : ''}</textarea>
+        </div>
 
-    <div>
-        <label for="publisher">发布者:</label>
-        <input type="text" id="publisher" name="publisher" required value="${news!=null ? news.publisher : ''}"/>
-    </div>
+        <div>
+            <label for="publisher">发布者:</label>
+            <input type="text" id="publisher" name="publisher" required value="${news!=null ? news.publisher : ''}"/>
+        </div>
 
-    <c:if test="${not empty news}">
-        <input type="hidden" id="id" name="id" value="${news.id}">
-    </c:if>
-    <button id="back" type="button">返回</button>
-    &nbsp;
-    <input id="submit" type="button" value="保存"/>
-</form>
-
+        <c:if test="${not empty news}">
+            <input type="hidden" id="id" name="id" value="${news.id}">
+        </c:if>
+        <br/>
+        <input id="submit" type="button" value="保存"/>
+    </form>
+</div>
 <script src="${pageContext.request.contextPath}/resources/jquery-2.1.4.js"></script>
 <script>
     $(function () {

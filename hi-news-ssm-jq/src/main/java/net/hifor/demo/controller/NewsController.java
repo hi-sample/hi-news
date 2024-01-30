@@ -28,7 +28,7 @@ public class NewsController {
      */
     @GetMapping
     public String pageList(Model model) {
-        model.addAttribute("newsList", newsService.queryList(10));
+        model.addAttribute("newsList", newsService.queryList());
         return "newsList";
     }
 

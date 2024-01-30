@@ -21,7 +21,7 @@ public class HomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String page(Model model) {
-        model.addAttribute("newsList", newsService.queryList(10));
+        model.addAttribute("newsList", newsService.queryList());
         return "newsList";
     }
 }

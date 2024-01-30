@@ -42,7 +42,7 @@
         <!--mybatis配置文件-->
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <!-- 自动扫描xml文件 -->
-        <property name="mapperLocations" value="classpath*:net/hifor/demo/dao/mapper/*.xml"/>
+        <property name="mapperLocations" value="classpath*:**/dao/mapper/*.xml"/>
     </bean>
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

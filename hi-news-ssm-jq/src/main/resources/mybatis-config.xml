@@ -6,7 +6,6 @@
 <configuration>
     <settings>
         <setting name="logImpl" value="LOG4J2" />
-        <!--<setting name="logLevel" value="DEBUG" />-->
         <!-- 开启下划线到驼峰的自动映射 -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>

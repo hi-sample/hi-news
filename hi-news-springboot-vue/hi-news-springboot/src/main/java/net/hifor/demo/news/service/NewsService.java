@@ -1,14 +1,14 @@
-package net.hifor.demo.service;
+package net.hifor.demo.news.service;
 
-import net.hifor.demo.dto.Result;
-import net.hifor.demo.entity.News;
+import net.hifor.demo.news.entity.News;
+import net.hifor.demo.common.dto.Result;
 
 import java.util.List;
 
 /**
  * @author IKin <br/>
- * @description 新闻业务逻辑 <br/>
- * @create 2024/1/26 11:23 <br/>
+ * @description <br/>
+ * @create 2022/11/29 15:24 <br/>
  */
 public interface NewsService {
     /**
@@ -16,14 +16,13 @@ public interface NewsService {
      * @param id
      * @return
      */
-    News queryById(long id);
+    Result queryById(long id);
 
     /**
      * 查询前n条新闻
-     * @param topNum
      * @return
      */
-    List<News> queryList();
+    Result queryList();
 
     /**
      * 添加一条新闻
