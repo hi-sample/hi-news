@@ -16,5 +16,5 @@ public interface GlobalConstant {
     /**
      * 视图根路径
      */
-    String VIEW_PRE = "WEB-INF/view";
+    String VIEW_PRE = "/WEB-INF/view";
 }

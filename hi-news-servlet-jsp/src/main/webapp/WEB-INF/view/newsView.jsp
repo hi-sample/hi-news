@@ -8,6 +8,11 @@
 </head>
 <body>
 <h1>新闻明细</h1>
+<%--
+jsp获取request参数的两种方式：
+<h2>${param.id}</h2>
+<h2><%=request.getParameter("id")%></h2>
+--%>
 <button id="back">返回</button>
 <h2>${news.title}</h2>
 <hr/>
